@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mongo Kotlin</title>
+</head>
+<body>
+<h1>Mongo Kotlin</h1>
+<br>
+<label for="id_e">id:</label>
+<input type="number" id="id_e">
+<label for="name_e">name:</label>
+<input type="text" id="name_e">
+<label for="age_e">age:</label>
+<input type="number" id="age_e">
+<button id="send_empl">Send</button>
+<br>
+<br>
+<button id="all_empl">All Empl</button>
+<br>
+
+<br>
+<p id="empl">employers</p>
+
+
+<script>
+    const allEmplBtn = document.getElementById("all_empl");
+    xmlhttp = new XMLHttpRequest();
+    allEmplBtn.addEventListener('click', function () {
+        xmlhttp.open("GET", "http://localhost:9091/empl/all", false);
+        xmlhttp.send();
+        console.log(xmlhttp.responseText)
+        empl = JSON.parse(xmlhttp.responseText)
+        console.log(empl);
+        document.getElementById("empl").innerHTML = JSON.stringify(empl);
+    });
+
+    const sendEmplBtn = document.getElementById("send_empl");
+    sendEmplBtn.addEventListener('click', function () {
+        xmlhttp.open("POST", "http://localhost:9091/empl", true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json");
+        id_e = document.getElementById("id_e").value;
+        name_e = document.getElementById("name_e").value;
+        age_e = document.getElementById("age_e").value;
+        console.log(id_e, name_e, age_e)
+        body = JSON.stringify({"id": id_e, "name": name_e, "age": age_e});
+        console.log(body)
+        xmlhttp.send(body);
+
+        location.reload();
+
+        document.getElementById("empl").innerHTML = JSON.stringify(body);
+    });
+</script>
+</body>
+
+</html>

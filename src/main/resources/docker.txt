@@ -1,0 +1,7 @@
+C:\Users\ASUTP\kotlin-mongo>docker build -t employer:2.1 .
+
+C:\Users\ASUTP\kotlin-mongo>docker run -p 9091:9091 --name employer-server -d employer:2.1
+
+push mongo
+
+C:\Users\ASUTP\kotlin-mongo>docker run -p 9091:9091 --name kot-moon --link=empmongo employer:2.1

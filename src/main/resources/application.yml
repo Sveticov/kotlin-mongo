@@ -1,0 +1,9 @@
+server:
+  port: 9091
+spring:
+  data:
+    mongodb:
+      database: Employer
+      host: empmongo
+      port: 27017
+      auto-index-creation: true
